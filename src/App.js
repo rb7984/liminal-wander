@@ -8,7 +8,8 @@ function App() {
   return (
     <>
       <Canvas>
-        <PerspectiveCamera makeDefault position={[3,3,3]}/>
+        <PerspectiveCamera makeDefault position={[3, 3, 3]} />
+
         <Cylinder />
         <OrbitControls />
         <hemisphereLight intensity={0.5} />
