@@ -1,1 +1,1 @@
-# A stroll through liminal spaces
+# A stroll through liminal spaces.
