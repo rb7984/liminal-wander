@@ -3,16 +3,15 @@ import { useFrame } from "@react-three/fiber/dist/react-three-fiber.cjs";
 import { useRef } from "react";
 import * as THREE from "three";
 
-
 const speed = 3;
 const direction = new THREE.Vector3();
 const frontVector = new THREE.Vector3();
 const sideVector = new THREE.Vector3();
 const rotation = new THREE.Vector3();
 
-export function Player() {
+export function Player({ lerp = THREE.MathUtils.lerp }) {
   const ref = useRef();
-  const [, get] = useKeyboardControls();
+  const { forward, backward, left, right, jump } = useKeyboardControls();
 
   useFrame((state) => {
     const { forward, backward, left, right, jump } = get();
@@ -29,17 +28,16 @@ export function Player() {
       .applyEuler(state.camera.rotation);
     ref.current.setLinvel({ x: direction.x, y: velocity.y, z: direction.z });
   });
-  return (
-    <>
-      <RigidBody
-        ref={ref}
-        colliders={false}
-        type="dynamic"
-        position={[0, 10, 0]}
-        enabledRotations={[false, false, false]}
-      >
-        <CapsuleCollider args={[0.75, 0.5]} />
-      </RigidBody>
-    </>
-  );
+  return null;
+  // <>
+  //   <RigidBody
+  //     ref={ref}
+  //     colliders={false}
+  //     type="dynamic"
+  //     position={[0, 10, 0]}
+  //     enabledRotations={[false, false, false]}
+  //   >
+  //     <CapsuleCollider args={[0.75, 0.5]} />
+  //   </RigidBody>{" "}
+  // </>
 }
