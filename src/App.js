@@ -1,22 +1,30 @@
 import { Canvas } from "@react-three/fiber";
-import {
-  Cylinder,
-  PerspectiveCamera,
-  KeyboardControls,
-} from "@react-three/drei";
+import { Cylinder, PerspectiveCamera } from "@react-three/drei";
+import * as THREE from "three";
 import "./App.css";
 import { Plane } from "./Plane";
+import { Player } from "./Player";
+import { OrbitControls } from "@react-three/drei";
 
 function App() {
   return (
     <>
-      <KeyboardControls />
       <Canvas>
-        <PerspectiveCamera makeDefault position={[3, 3, 3]} />
+        <PerspectiveCamera makeDefault position={[3, 3, 3]}></PerspectiveCamera>
+        <Player />
 
         <Plane />
 
-        <Cylinder />
+        <OrbitControls />
+        <Cylinder position={[10, 0, 30]} />
+        <Cylinder position={[5, 0, 10]} />
+        <Cylinder
+          material={new THREE.MeshBasicMaterial(0xff0000)}
+          position={[0, 0, 0]}
+        />
+        <Cylinder position={[15, 3, 2]} />
+        <Cylinder position={[40, 0, 0]} />
+        <Cylinder position={[30, 3, 30]} />
         <hemisphereLight intensity={0.5} />
       </Canvas>
     </>
