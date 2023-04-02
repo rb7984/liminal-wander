@@ -1,9 +1,9 @@
-import React, { useRef } from "react";
+import React from "react";
 import { useGLTF } from "@react-three/drei";
 import * as THREE from "three";
 
 export function Maze(props) {
-  const { nodes, materials } = useGLTF("/maze.glb");
+  const { nodes } = useGLTF("/maze.glb");
 
   var m2 = new THREE.MeshPhongMaterial();
 
