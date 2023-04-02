@@ -8,7 +8,7 @@ export function Plane() {
   const texture = new THREE.TextureLoader().load("/tex.jpg");
   texture.wrapS = THREE.RepeatWrapping;
   texture.wrapT = THREE.RepeatWrapping;
-  texture.repeat.set(200, 200);
+  texture.repeat.set(300, 300);
 
   m2.map = texture;
 
@@ -16,6 +16,7 @@ export function Plane() {
   plane.rotateX(-Math.PI / 2);
   plane.translateY(1);
   plane.receiveShadow = true;
+  plane.castShadow = true;
 
   return <primitive object={plane} />;
 }

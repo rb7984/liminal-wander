@@ -4,18 +4,23 @@ import * as THREE from "three";
 import "./App.css";
 import { Plane } from "./Plane";
 import { Player } from "./Player";
-import { OrbitControls } from "@react-three/drei";
+// import { OrbitControls } from "@react-three/drei";
+import { Maze } from "./Maze";
 
 function App() {
   return (
     <>
       <Canvas>
-        <PerspectiveCamera makeDefault position={[3, 3, 3]}></PerspectiveCamera>
+        <PerspectiveCamera
+          makeDefault
+          position={[3, 1.5, 3]}
+          lookAt={(0, 1.5, 0)}
+        ></PerspectiveCamera>
         <Player />
 
         <Plane />
-
-        <OrbitControls />
+        <Maze />
+        {/* <OrbitControls /> */}
         <Cylinder position={[10, 0, 30]} />
         <Cylinder position={[5, 0, 10]} />
         <Cylinder
@@ -25,7 +30,8 @@ function App() {
         <Cylinder position={[15, 3, 2]} />
         <Cylinder position={[40, 0, 0]} />
         <Cylinder position={[30, 3, 30]} />
-        <hemisphereLight intensity={0.5} />
+        <hemisphereLight castShadow intensity={0.5} />
+        <spotLight castShadow position={[0, 50, 0]} intensity={1} />
       </Canvas>
     </>
   );
