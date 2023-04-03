@@ -32,6 +32,7 @@ export const usePersonControls = () => {
       document.removeEventListener("keydown", handleKeyDown);
       document.removeEventListener("keyup", handleKeyUp);
     };
-  }, []);
+  });
+
   return movement;
 };

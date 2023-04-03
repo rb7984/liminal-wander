@@ -1,5 +1,4 @@
 import * as THREE from "three";
-import { useState } from "react";
 import { useFrame } from "@react-three/fiber";
 import { usePersonControls } from "./usePersonControls";
 
