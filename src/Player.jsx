@@ -1,12 +1,16 @@
 import * as THREE from "three";
 import { useFrame } from "@react-three/fiber";
 import { usePersonControls } from "./usePersonControls";
+import { CapsuleCollider, RigidBody } from "@react-three/rapier";
+import { useRef } from "react";
 
-var SPEED = 0.1;
+var speed = 0.1;
 
 export function Player() {
   const { forward, backward, left, right } = usePersonControls();
-  // var [angle, setAngle] = useState(0);
+  // const ref = useRef();
+  var refx = useRef(0);
+  var refz = useRef(0);
 
   useFrame((state) => {
     // Calculating front/side movement ...
@@ -17,24 +21,32 @@ export function Player() {
     let direction2 = new THREE.Vector3(0, 0, 0);
     state.camera.getWorldDirection(direction2);
     direction2.multiplyScalar(Number(forward) - Number(backward));
-    // console.log(direction2);
 
     frontVector.set(0, 0, Number(forward) - Number(backward));
     sideVector.set(Number(right) - Number(left), 0, 0);
     direction
       .subVectors(frontVector, sideVector)
       .normalize()
-      .multiplyScalar(SPEED);
+      .multiplyScalar(speed);
 
     var angle = -(Number(right) - Number(left)) * 0.05;
-    // setAngle(angle - (Number(right) - Number(left)) * 0.05);
     state.camera.rotateY(angle);
 
     state.camera.position.x += direction2.x * 0.2;
     state.camera.position.z += direction2.z * 0.2;
-    // state.camera.position.x += frontVector.z;
-    // state.camera.position.z += frontVector.x;
+
+    // ref.current.setLinvel({
+    //   x: state.camera.position.x,
+    //   z: state.camera.position.z,
+    // });
+
+    refx = state.camera.position.x;
+    refz = state.camera.position.z;
   });
 
-  return null;
+  return (
+    <RigidBody position={[refx, 3, refz]} type="dynamic">
+      <CapsuleCollider args={[0.75, 0.5]} />
+    </RigidBody>
+  );
 }

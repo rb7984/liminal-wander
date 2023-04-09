@@ -16,6 +16,17 @@ body,
   pointer-events: none;
 }
 
+.center {
+  z-index: 2;
+  position: absolute;
+  left: 33%;
+  width: 33%;
+}
+
+.canvas {
+  z-index: 1;
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;

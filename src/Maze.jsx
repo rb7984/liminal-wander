@@ -1,10 +1,12 @@
 import React from "react";
 import { useGLTF } from "@react-three/drei";
 import * as THREE from "three";
+import { useRef } from "react";
+import { RigidBody, TrimeshCollider } from "@react-three/rapier";
 
 export function Maze(props) {
   const { nodes } = useGLTF("/maze.glb");
-
+  const ref = useRef();
   var m2 = new THREE.MeshPhongMaterial();
 
   const texture = new THREE.TextureLoader().load("/tex.jpg");
@@ -15,7 +17,8 @@ export function Maze(props) {
   m2.map = texture;
 
   return (
-    <group {...props} dispose={null}>
+    // <group {...props} dispose={null}>
+    <RigidBody ref={ref} type="fixed" colliders="trimesh">
       <mesh
         receiveShadow
         castShadow
@@ -24,7 +27,8 @@ export function Maze(props) {
         rotation={[Math.PI / 2, 0, 0]}
         scale={1}
       />
-    </group>
+    </RigidBody>
+    // </group>
   );
 }
 

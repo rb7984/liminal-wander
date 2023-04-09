@@ -1,4 +1,5 @@
 import React from "react";
+import { RigidBody, CuboidCollider } from "@react-three/rapier";
 import * as THREE from "three";
 
 export function Plane() {
@@ -18,5 +19,10 @@ export function Plane() {
   plane.receiveShadow = true;
   plane.castShadow = true;
 
-  return <primitive object={plane} />;
+  return (
+    <RigidBody type="fixed" colliders={false}>
+      <primitive object={plane} />;
+      <CuboidCollider args={[1000, 2, 1000]} position={[0, -2, 0]} />
+    </RigidBody>
+  );
 }
