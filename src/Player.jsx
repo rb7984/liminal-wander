@@ -11,6 +11,7 @@ export function Player() {
   // const ref = useRef();
   var refx = useRef(0);
   var refz = useRef(0);
+  const body = useRef();
 
   useFrame((state) => {
     // Calculating front/side movement ...
@@ -35,17 +36,18 @@ export function Player() {
     state.camera.position.x += direction2.x * 0.2;
     state.camera.position.z += direction2.z * 0.2;
 
-    // ref.current.setLinvel({
-    //   x: state.camera.position.x,
-    //   z: state.camera.position.z,
-    // });
-
     refx = state.camera.position.x;
     refz = state.camera.position.z;
   });
 
   return (
-    <RigidBody position={[refx, 3, refz]} type="dynamic">
+    <RigidBody
+      ref={body}
+      position={[refx, 3, refz]}
+      mass={1}
+      colliders="cuboid"
+      type="dynamic"
+    >
       <CapsuleCollider args={[0.75, 0.5]} />
     </RigidBody>
   );

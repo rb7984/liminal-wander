@@ -18,14 +18,13 @@ export function Maze(props) {
 
   return (
     // <group {...props} dispose={null}>
-    <RigidBody ref={ref} type="fixed" colliders="trimesh">
+    <RigidBody {...props} ref={ref} type="fixed" colliders="trimesh">
       <mesh
         receiveShadow
         castShadow
         geometry={nodes.Object_1.geometry}
         material={m2}
         rotation={[Math.PI / 2, 0, 0]}
-        scale={1}
       />
     </RigidBody>
     // </group>
